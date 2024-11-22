@@ -14,8 +14,8 @@ var screenWidth = window.outerWidth;
 var screenHeight = window.innerHeight;
 var boardWidth = screenWidth * 0.7; // 90% of screen width
 var boardHeight = screenHeight * 0.7; // 80% of screen height
-var jetWidth = boardWidth * 0.03; // Jet is 10% of board width
-var jetHieght = boardHeight * 0.08;
+var jetWidth = boardWidth * 0.05; // Jet is 10% of board width
+var jetHieght = boardHeight * 0.1;
 
 
 var rocksWidth = jetWidth * 1.6;
@@ -158,14 +158,14 @@ function gameLoop() {
 function startMoveLeft() {
 
   if (!moveInterval) { // Prevent multiple intervals from stacking
-    moveInterval = setInterval(moveLeft, 25); // Move left every 50ms
+    moveInterval = setInterval(moveLeft, 15); // Move left every 50ms
   }
 }
 
 
 function startMoveRight() {
   if (!moveInterval) { // Prevent multiple intervals from stacking
-    moveInterval = setInterval(moveRight, 25); // Move right every 50ms
+    moveInterval = setInterval(moveRight, 15); // Move right every 50ms
   }
 }
 
@@ -182,7 +182,7 @@ function stopMove() {
 // Continuous shooting function
 function startShooting() {
   if (!shootInterval) { // Prevent multiple intervals from stacking
-    shootInterval = setInterval(shootBullet, 150); // Shoot every 200ms
+    shootInterval = setInterval(shootBullet, 500); // Shoot every 200ms
   }
 }
 
@@ -209,14 +209,14 @@ function stopShooting() {
 function moveLeft() {
   var left = parseInt(window.getComputedStyle(jet).getPropertyValue("left"));
   if (left > 0) {
-    jet.style.left = left - 10 + "px";
+    jet.style.left = (left - jetWidth * 0.1) + "px";
   }
 }
 
 function moveRight() {
   var left = parseInt(window.getComputedStyle(jet).getPropertyValue("left"));
   if (left <= boardWidth - jetWidth ) {
-    jet.style.left = left + 10 + "px";
+    jet.style.left = (left + jetWidth * 0.1) + "px";
   }
 }
 
