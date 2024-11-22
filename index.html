@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Space Shooter</title>
+  </head>
+  <style>
+
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: url("space.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content:center;
+  align-items:start;
+}
+
+#board {
+  position: relative;
+  top: 2%;  
+  width: 70vw ; /* Board width will be 90% of the viewport width */
+  /*max-width: 700px;  */ /* Limit the board size for larger screens */
+  height: 70vh ; /* Maintain square aspect ratio */
+  /*max-height: 20%;  */  /* Limit height for larger screens */   
+  margin: 2% auto;
+  border: 2px solid white;
+  background-color: black;
+  overflow:hidden;
+  
+}
+
+#jet {
+  position: absolute;
+  width: 3%; /* Dynamic size relative to the board */
+  height: 8%;
+  background: url("rocket.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  left: 50%;
+  bottom: 2%; /* Slightly above the bottom edge */
+  /*transform: translateX(-50%);  */
+}
+
+.bullets {
+  position: absolute;
+  width: 5%; /* Dynamic size */
+  height: 5%;
+  bottom: 10%;
+  left: 50%;
+  background: url("bullet.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: translateX(-50%);
+}
+
+.rocks {
+  position: absolute;
+  width: 10%; /* Dynamic size relative to the board */
+  height: 10%;
+  top: 0;
+  background: url("alien.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+#points {
+  position: absolute;
+  top: 5%;
+  left: 2%;
+  font-size: 8vw; /* Adjust size dynamically */
+  color: white;
+  z-index: 10;
+}
+
+#game-over-overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  /* display: flex;  */   /* Flex layout for centering content */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 5vh; /* Dynamic text size */
+  text-align: center;
+  z-index: 100;
+}
+
+#game-over-overlay button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 8vh;
+}
+
+#mobile-controls {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+#mobile-controls button {
+  width: 15vw; /* Dynamic size for buttons */
+  max-width: 100px; /* Limit size for larger screens */
+  height: 15vw;
+  max-height: 100px;
+
+  font-size: 3vw;
+  
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  touch-action: manipulation; /* Prevents default behaviors on long-press */
+  user-select: none; /* Prevents text selection */
+  -webkit-user-select: none;
+}
+
+
+
+
+
+
+  </style>
+
+
+
+  <script src="app.js" defer></script>         
+  <body>
+    <div id="board">
+      <div class="rocks"></div>
+      <div id="jet"></div>
+    </div>
+
+    <div id="points">0</div>
+    
+    <div id="game-over-overlay">
+        <p>Game Over</p>
+        <p>Your Score : <span id="final-score"></span></p>
+        <button onclick="restartGame()">Play Again</button>
+    </div>
+  
+     <!-- Mobile controls -->
+  <div id="mobile-controls">
+    <button id="move-left" 
+      onmousedown="startMoveLeft()" onmouseup="stopMove()" 
+      ontouchstart="startMoveLeft()" ontouchend="stopMove()">⬅️</button>
+    <button id="shoot" 
+      onmousedown="startShooting()" onmouseup="stopShooting()" 
+      ontouchstart="startShooting()" ontouchend="stopShooting()">🔫</button>
+    <button id="move-right" 
+      onmousedown="startMoveRight()" onmouseup="stopMove()" 
+      ontouchstart="startMoveRight()" ontouchend="stopMove()">➡️</button>
+  </div>
+  
+   
+  </body>
+  
+</html>
