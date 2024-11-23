@@ -107,7 +107,7 @@ html, body {
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 10px;
+  gap: 4vw;
   z-index: 10;
 }
 
@@ -117,7 +117,9 @@ html, body {
   height: 15vw;
   max-height: 100px;
 
-  font-size: 3vw;
+  /* font-size: 3vw;   */
+
+  font-size: calc(1.8em + 2%); /* Scales font size with screen and button size */
   
   background-color: rgba(255, 255, 255, 0.8);
   border: none;
