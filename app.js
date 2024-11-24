@@ -387,9 +387,44 @@ function restartGame() {
 
 
 
+
+
+
+/*
+
 document.querySelectorAll('#mobile-controls button').forEach(button => {
   button.addEventListener('contextmenu', (e) => e.preventDefault());
 });
+
+
+*/
+
+
+
+
+document.querySelectorAll('#mobile-controls button').forEach(button => {
+
+
+  
+  button.addEventListener('contextmenu', (e) => e.preventDefault());
+
+
+
+  button.addEventListener('touchstart',  (e) => {
+    e.preventDefault();
+    navigator.vibrate(0); // Stop any vibration immediately
+  });
+  
+
+
+  button.addEventListener('touchend', (e) => {
+    e.preventDefault();
+  });
+
+
+
+});
+
 
 
 
